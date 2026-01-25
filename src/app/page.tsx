@@ -1,65 +1,30 @@
-import Image from "next/image";
+import "./globals.css";
+import Navbar from "@/components/Navbar";
+import Messagebar from "@/components/Messagebar";
+import Mainpage from "@/components/Mainpage"
+import ProductsRow from "@/components/ProductsRow";
+const products = [
+  { id: 1, image: "/p1.png", title: "A2 Vedic Cow Ghee", oldPrice: "250.00", price: "199.00", offerPrice: "149", coupon: "ANMASA26", badge: "Save 20%" },
+  { id: 2, image: "/p1.png", title: "Cold Pressed Mustard Oil", oldPrice: "320.00", price: "269.00", offerPrice: "229", coupon: "ANMASA26", badge: "Best Seller" },
+  { id: 3, image: "/p1.png", title: "Organic Honey", oldPrice: "180.00", price: "149.00", offerPrice: "129", coupon: "ANMASA26", badge: "Hot Deal" },
+  { id: 4, image: "/p1.png", title: "Stone Ground Atta", oldPrice: "210.00", price: "179.00", offerPrice: "159", coupon: "ANMASA26", badge: "Popular" },
+  { id: 5, image: "/p1.png", title: "Cold Pressed Coconut Oil", oldPrice: "340.00", price: "289.00", offerPrice: "249", coupon: "ANMASA26", badge: "Save 15%" },
+  { id: 6, image: "/p1.png", title: "Organic Turmeric Powder", oldPrice: "160.00", price: "129.00", offerPrice: "109", coupon: "ANMASA26", badge: "Fresh Stock" },
+  { id: 7, image: "/p1.png", title: "Desi Jaggery Powder", oldPrice: "140.00", price: "119.00", offerPrice: "99", coupon: "ANMASA26", badge: "No Chemicals" },
+  { id: 8, image: "/p1.png", title: "Raw Forest Honey", oldPrice: "260.00", price: "219.00", offerPrice: "189", coupon: "ANMASA26", badge: "Pure" },
+  { id: 9, image: "/p1.png", title: "Cold Pressed Groundnut Oil", oldPrice: "330.00", price: "279.00", offerPrice: "239", coupon: "ANMASA26", badge: "Healthy Choice" },
+  { id: 10, image: "/p1.png", title: "Organic Black Pepper", oldPrice: "190.00", price: "159.00", offerPrice: "139", coupon: "ANMASA26", badge: "Spicy Deal" },
+];
+
 
 export default function Home() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
+    <div className="bg-anmasa-green">
+      <>
+        <Navbar />
+        <Mainpage />
+        <ProductsRow products={products} />;
+      </>
     </div>
   );
 }
