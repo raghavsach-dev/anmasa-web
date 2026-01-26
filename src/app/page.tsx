@@ -19,11 +19,11 @@ const products = [
 
 export default function Home() {
   return (
-    <div className="bg-anmasa-green">
+    <div className="bg-anmasa-bg">
       <>
         <Navbar />
         <Mainpage />
-        <ProductsRow products={products} />;
+        <ProductsRow products={products} />
       </>
     </div>
   );

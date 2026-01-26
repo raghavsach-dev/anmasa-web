@@ -2,13 +2,13 @@
 
 @import "tailwindcss";
 @theme {
-  --color-mint-500: oklch(0.45 0.07 135);
-  --color-banner-1: oklch(0.43 0.09 134);
-  --color-text-1: oklch(97.1% 0.013 17.38);
-  --color-discount-2: oklch(0.75 0.16 85);
-  --color-heading-1: oklch(0.52 0.06 120);
-  --color-bg-anmasa: #fef3c6;
-  --color-yellow: oklch(90.5% 0.182 98.111);
+  --color-anmasa-accent: oklch(0.45 0.07 135);
+  --color-anmasa-secondary: oklch(0.43 0.09 134);
+  --color-anmasa-text: oklch(97.1% 0.013 17.38);
+  --color-anmasa-highlight: oklch(0.75 0.16 85);
+  --color-anmasa-heading: oklch(0.52 0.06 120);
+  --color-anmasa-bg: #FCFCFC;
+  --color-anmasa-yellow: oklch(90.5% 0.182 98.111);
 }
 
 body {

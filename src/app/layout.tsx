@@ -27,7 +27,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${quattro.variable} ${geistMono.variable} antialiased`}>
         <Messagebar />
-        <div className="flex items-center justify-center text-mint-500 h-15 ">
+        <div className="flex items-center justify-center text-anmasa-accent h-15 ">
           <Image
             src="/LOGO.avif"
             alt="Logo"
@@ -48,7 +48,7 @@ export default function RootLayout({
           <button><FiUser className="ml-3 text-lg" /></button>
           <button><FiShoppingBag className="ml-3 text-lg" /></button>
         </div>
-        <div className="flex items-center justify-center h-10 bg-yellow">
+        <div className="flex items-center justify-center h-10 bg-anmasa-yellow">
           <p className="m-0">FLAT 20% OFF sitewide on every order</p>
         </div>
         <div>

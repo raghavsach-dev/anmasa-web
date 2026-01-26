@@ -27,19 +27,19 @@ export default function Messagebar() {
   }
 
   return (
-    <div className="flex items-center justify-center gap-4 h-10 bg-banner-1">
+    <div className="flex items-center justify-center gap-4 h-10 bg-anmasa-secondary">
       <button
         onClick={prevfunc}
-        className="absolute left-50 text-text-1 text-xl"
+        className="absolute left-50 text-anmasa-text text-xl"
       >
         &lt;
       </button>
       <div>
-        <p className="text-text-1 text-sm">{messages[index]}</p>
+        <p className="text-anmasa-text text-sm">{messages[index]}</p>
       </div>
       <button
         onClick={nextfunc}
-        className="absolute right-50 text-text-1 text-xl"
+        className="absolute right-50 text-anmasa-text text-xl"
       >
         &gt;
       </button>
