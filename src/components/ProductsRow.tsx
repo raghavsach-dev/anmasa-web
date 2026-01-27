@@ -19,6 +19,9 @@ type ProductsRowProps = {
 export default function ProductsRow({ products }: ProductsRowProps) {
   return (
     <>
+    <div className="flex text-3xl ml-30 mt-5 text-anmasa-heading">
+    <p className="m-0">~ Best Value, Lowest Price ~</p>
+  </div>
       <div className="flex overflow-x-auto no-scrollbar ml-30 mt-4 pb-4 gap-6 whitespace-nowrap">
         {products.map((product) => (
           <div
