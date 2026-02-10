@@ -1,15 +1,28 @@
-import Product from '@/app/types/Products';
-import ProductCard from './ProductCard';
-import Products from '@/app/types/Products';
+import { Category, Subcategory } from "@/app/types/category";
+import ProductCard from "./ProductCard";
 
+import { Product } from "@/app/types/Products";
+import { getCategoryByCode } from "@/app/services/category-service";
 
-export default function ProductRow({products}: {products:Product[]}) {
-    return (
-      <div className='flex overflow-x-auto no-scrollbar ml-30 mt-4 pb-4 gap-6 whitespace-nowrap'>
-        {products.map((product) => (
+export default async function ProductRow({
+  categoryCode,
+}: {
+  categoryCode: string;
+}) {
+  const category: Category | null = await getCategoryByCode(categoryCode);
+  if (!category) {
+    // You might want to handle the 'not found' case differently as per your app's UX
+    return null;
+  }
+  const subcategories: Subcategory[] | null = category.subcategories;
+  const products: Product[] | null = subcategories?.flatMap(
+    (subcategory) => subcategory.products,
+  );
+  return (
+    <div className="flex overflow-x-auto no-scrollbar ml-30 mt-4 pb-4 gap-6 whitespace-nowrap">
+      {products.map((product) => (
         <ProductCard key={product.id} product={product} />
-    ))}</div>
-        
-    
-    );
+      ))}
+    </div>
+  );
 }

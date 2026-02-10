@@ -2,6 +2,7 @@ import VariantButton from "@/components/products/VariantButton";
 import { notFound } from "next/navigation";
 import { getProductByCode } from "@/app/services/products-service";
 
+
 export default async function ProductDetailPage({
   params,
 }: {
