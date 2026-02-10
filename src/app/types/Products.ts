@@ -4,48 +4,69 @@ export type Product = {
   n: string;
   pc: string;
   v: Variant[];
+  n1: string;
+  n2: string;
+  nn: string;
+  c: string;
+  sc: string;
+  b: string;
+  sl: string;
+  sd: string;
+  media: Media[];
+  soo: string;
+  oos: boolean;
+  coarseness: boolean;
+  content: ProductContent;
+  ql: boolean;
+  related: Product[];
+  tags: string[];
+};
+
+export type ProductContent = {
+  health: Content;
+  info: Content;
+  description: Content;
+};
+
+export type Content = {
+  content: string;
+  content_type: string;
 };
 
 export type Variant = {
   id: string;
+  pid: string;
   ic: string;
-  sp: number;
-  m: number;
-  uom: string;
-  measure: string;
+  display_order: number;
   vn: string;
-};
-
-export type Item = {
-  id: string;
-  n: string;
-  sd: string;
-  oos: boolean;
-  v: ItemVariant[];
-  media: Media[];
-  related: Related[];
-};
-
-export type Related = {
-  id: string;
-  nn: string;
-  pc: string;
-  img: string;
-  sp: number;
   m: number;
+  sp: number;
+  oos: boolean;
+  d: number;
+  measure: number;
+  uom: string;
 };
 
 export type Media = {
   URL: string;
   type: string;
+  alt: string;
 };
 
-export type ItemVariant = {
-  id: string;
-  vn: string;
-  sp: number;
-  m: number;
+export type Category = {
+  code: string;
+  name: string;
+  image_url: string;
+  icon_url: string;
+  display_order: number;
+  subcategories: Subcategory[];
 };
 
-// Keep default export for existing imports
+export type Subcategory = {
+  code: string;
+  name: string;
+  image_url: string;
+  display_order: number;
+  products: Product[];
+};
 export default Product;

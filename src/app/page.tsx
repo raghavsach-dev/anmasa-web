@@ -3,7 +3,7 @@ import Navbar from "@/components/Navbar";
 import Messagebar from "@/components/Messagebar";
 import ProductRow from "@/components/products/ProductRow";
 import Image from "next/image";
-import { getProducts } from "./services/products";
+// import { getProductsByCategory } from "./services/products-service";
 import Product from "./types/Products";
 import VarientButton from "@/components/products/VariantButton";
 
@@ -40,23 +40,23 @@ const product = [
   },
 ];
 
-
 export default async function Home() {
   // const productsArray: Product[] = await getProducts("ATTA");
-  
+
   return (
     <div className="bg-anmasa-bg w-[100vw]">
       <>
         <Navbar />
         {/* <ProductRow products = {productsArray} /> */}
-        <Image src="/promo.png"
-            alt="promo"
-            width={1400}
-            height={1400}
-            className="object-cover"/>
+        <Image
+          src="/promo.png"
+          alt="promo"
+          width={1400}
+          height={1400}
+          className="object-cover"
+        />
       </>
       {/* <VarientButton /> */}
-    </div>  
+    </div>
   );
 }
-
