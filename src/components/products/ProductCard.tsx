@@ -4,11 +4,12 @@ import Product from '@/app/types/Products';
 import Image from "next/image";
 import Link from 'next/link';
 import ProductPopup from './ProductPopup';
+import { useRouter } from 'next/navigation';
 
 export default function ProductCard({ product }: { product: Product }) {
   const [showPopup, setShowPopup] = useState(false);
   const [selectedVariant, setSelectedVariant] = useState<any>(null);
-
+  const router = useRouter();
   const handleVariantSelect = (variant: any) => {
     setSelectedVariant(variant);
   };
@@ -32,7 +33,7 @@ export default function ProductCard({ product }: { product: Product }) {
         </div>
 
         <div className="mt-4 ml-2 text-sm text-gray-500">
-          <p className="m-0">{product.n}</p>
+          <p onClick={() => router.push(`/product/${product.pc}`)} className="m-0 cursor-pointer hover:underline">{product.n}</p>
           <p className="mt-1 line-through text-xs">
             Rs. {product.v[0].m}
           </p>
