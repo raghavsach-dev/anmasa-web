@@ -27,7 +27,7 @@ export default function VariantButton({ variants, onVariantChange }: VariantButt
   return (
     <div className="flex flex-col gap-2">
       <PriceRow oldprice={selectedVariant?.m ?? 0} newprice={selectedVariant?.sp ?? 0} />
-   
+      <p className="text-sm text-gray-500">Size</p>
     <div className="flex flex-row gap-2">
       {variants.map((variant, index) => (
         <button 
@@ -41,6 +41,8 @@ export default function VariantButton({ variants, onVariantChange }: VariantButt
         >
           {variant.vn}
         </button>
+        
+        
       ))}
     </div>
     </div>

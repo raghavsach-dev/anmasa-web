@@ -1,4 +1,4 @@
-import Product from "./products";
+import Product from "./Products";
 
 export type Category = {
   code: string;

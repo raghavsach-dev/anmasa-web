@@ -1,11 +1,9 @@
-
 import VariantButton from "@/components/product/VariantButton";
 import { notFound } from "next/navigation";
 import { getProductByCode } from "@/app/services/products-service";
 import ImageCard from "@/components/product/ImageCard";
 import ReactMarkdown from 'react-markdown';
-import PriceRow from "@/components/product/PriceRow";
-
+import Quantity from "@/components/product/Quantity";
 
 export default async function ProductDetailPage({
   params,
@@ -25,7 +23,7 @@ export default async function ProductDetailPage({
 
   return (
     <div className="flex flex-row gap-2 p-20 pl-50">
-      <ImageCard image1={product.media[0].URL} image2={product.media[1].URL} image3={product.media[2].URL} />
+      <ImageCard image1={product.media[0].URL} images={product.media.slice(1).map((media: any) => media.URL)} />
       <div className="flex flex-row gap-2 w-[1000px]">
       <div className="flex flex-col gap-2 w-[500px]">
         <p className="text-anmasa-heading text-lg">ANMASA</p>
@@ -34,6 +32,7 @@ export default async function ProductDetailPage({
         <ReactMarkdown components={{
           p: ({ children }) => <p className="text-sm text-gray-500">{children}</p>
         }}>{product.content.description.content}</ReactMarkdown>
+        <Quantity outOfStock={product.oos ?? false} />
       </div>
       </div>
     </div>
