@@ -1,7 +1,6 @@
 import { Category, Subcategory } from "@/app/types/category";
 import ProductCard from "./ProductCard";
-
-import { Product } from "@/app/types/products";
+import { Product } from "@/app/types/Products";
 import { getCategoryByCode } from "@/app/services/category-service";
 
 export default async function ProductRow({
@@ -11,7 +10,6 @@ export default async function ProductRow({
 }) {
   const category: Category | null = await getCategoryByCode(categoryCode);
   if (!category) {
-    // You might want to handle the 'not found' case differently as per your app's UX
     return null;
   }
   const subcategories: Subcategory[] | null = category.subcategories;
