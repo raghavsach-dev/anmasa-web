@@ -29,10 +29,10 @@ export default async function ProductDetailPage({
         <p className="text-anmasa-heading text-lg">ANMASA</p>
         <h1 className="text-4xl text-anmasa-accent">{product.n}</h1>
         <VariantButton variants={product.v} />
+        <Quantity outOfStock={product.oos ?? false} />
         <ReactMarkdown components={{
           p: ({ children }) => <p className="text-sm text-gray-500">{children}</p>
         }}>{product.content.description.content}</ReactMarkdown>
-        <Quantity outOfStock={product.oos ?? false} />
       </div>
       </div>
     </div>
