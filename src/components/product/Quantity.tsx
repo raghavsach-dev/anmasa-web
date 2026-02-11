@@ -1,5 +1,6 @@
 "use client"
 import { useState } from "react";
+import { FaMinus,FaPlus } from "react-icons/fa";
 
 export default function Quantity({ outOfStock }: { outOfStock: boolean }) {
   const [quantity, setQuantity] = useState(1);
@@ -12,13 +13,12 @@ export default function Quantity({ outOfStock }: { outOfStock: boolean }) {
     <>
     <p className="text-sm text-gray-500">Quantity</p>
     <div className="flex flex-row gap-2 items-center border border-anmasa-accent rounded-lg p-2 w-fit px-4">
-        
-      <button disabled={quantity <= 1} onClick={() => setQuantity(quantity - 1)}>
-        -
+      <button className="cursor-pointer" disabled={quantity <= 1} onClick={() => setQuantity(quantity - 1)}>
+        <FaMinus  />
       </button>
-      <input type="number" value={quantity} onChange={handleQuantityChange} className="w-10 text-center [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />
-      <button onClick={() => setQuantity(quantity + 1)}>
-        +
+      <input type="number" value={quantity} onChange={handleQuantityChange} className=" w-10 text-center [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />
+      <button className="cursor-pointer" onClick={() => setQuantity(quantity + 1)}>
+        <FaPlus  />
       </button>
     </div>
     </>
