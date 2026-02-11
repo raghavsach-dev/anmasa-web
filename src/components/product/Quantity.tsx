@@ -17,7 +17,7 @@ export default function Quantity({ outOfStock }: { outOfStock: boolean }) {
         <FaMinus  />
       </button>
       <input type="number" value={quantity} onChange={handleQuantityChange} className=" w-10 text-center [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />
-      <button className="cursor-pointer" onClick={() => setQuantity(quantity + 1)}>
+      <button className="cursor-pointer" disabled={quantity >= 10} onClick={() => setQuantity(quantity + 1)}>
         <FaPlus  />
       </button>
     </div>
