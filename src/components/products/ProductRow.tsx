@@ -1,7 +1,7 @@
 import { Category, Subcategory } from "@/app/types/category";
 import ProductCard from "./ProductCard";
 
-import { Product } from "@/app/types/Products";
+import { Product } from "@/app/types/products";
 import { getCategoryByCode } from "@/app/services/category-service";
 
 export default async function ProductRow({

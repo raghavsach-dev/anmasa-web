@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from 'react'
-import Product from '@/app/types/Products';
+import Product from '@/app/types/products';
 import Image from "next/image";
 import Link from 'next/link';
 import ProductPopup from './ProductPopup';

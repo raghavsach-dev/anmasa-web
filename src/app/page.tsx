@@ -5,7 +5,7 @@ import ProductRow from "@/components/products/ProductRow";
 import Image from "next/image";
 import { getProductsByCategory } from "./services/products-service";
 import VarientButton from "@/components/products/VariantButton";
-import { Category, Subcategory, Product } from "./types/Products";
+import { Category, Subcategory, Product } from "./types/products";
 
 export default async function Home() {
 

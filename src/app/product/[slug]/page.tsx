@@ -1,6 +1,7 @@
 import VariantButton from "@/components/products/VariantButton";
 import { notFound } from "next/navigation";
 import { getProductByCode } from "@/app/services/products-service";
+import ImageCard from "@/components/product/ImageCard";
 
 
 export default async function ProductDetailPage({
@@ -25,6 +26,7 @@ export default async function ProductDetailPage({
   const variants = product?.v;
   return (
     <div>
+      <ImageCard image={product.img} />
       {product.n}
       {variants.map((variant: any) => (
         <VariantButton key={variant.id} label={variant.vn} isSelected={false} />
