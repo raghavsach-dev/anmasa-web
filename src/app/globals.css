@@ -9,6 +9,7 @@
   --color-anmasa-heading: oklch(0.52 0.06 120);
   --color-anmasa-bg: #FCFCFC;
   --color-anmasa-yellow: oklch(90.5% 0.182 98.111);
+  --color-anmasa-sale: oklch(96.2% 0.059 95.617);
 }
 
 body {
