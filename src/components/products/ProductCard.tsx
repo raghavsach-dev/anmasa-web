@@ -1,8 +1,7 @@
-"use client";
+ "use client";
 import React, { useState } from 'react'
-import Product from '@/app/types/products';
+import Product from '@/app/types/Products';
 import Image from "next/image";
-import Link from 'next/link';
 import ProductPopup from './ProductPopup';
 import { useRouter } from 'next/navigation';
 

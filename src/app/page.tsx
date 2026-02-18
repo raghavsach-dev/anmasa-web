@@ -1,11 +1,7 @@
 import "./globals.css";
 import Navbar from "@/components/Navbar";
-import Messagebar from "@/components/Messagebar";
 import ProductRow from "@/components/products/ProductRow";
 import Image from "next/image";
-import { getProductsByCategory } from "./services/products-service";
-import VarientButton from "@/components/product/VariantButton";
-import { Category, Subcategory, Product } from "./types/products";
 
 export default async function Home() {
 

@@ -1,4 +1,4 @@
-import Product from "@/app/types/products";
+import { Product } from "@/app/types/Products";
 import { getWithoutAuth } from "./api";
 
 //GET PRODUCTS BY CODE

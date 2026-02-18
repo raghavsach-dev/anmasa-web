@@ -1,5 +1,5 @@
 import React from 'react'
-import Product from '@/app/types/products';
+import Product from '@/app/types/Products';
 import Image from "next/image";
 import Link from "next/link";
 
