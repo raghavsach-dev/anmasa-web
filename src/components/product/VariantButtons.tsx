@@ -26,7 +26,7 @@ export default function VariantButtons({
           type="button"
         >
           {variant.vn}
-          <span className="absolute top-0 right-0 text-xs text-white bg-anmasa-accent text-anmasa-text rounded-lg px-2 py-1">
+          <span className="absolute -top-1 -right-1 text-xs text-white bg-anmasa-accent text-anmasa-text rounded-full px-2 py-1">
             1
           </span>
         </button>
