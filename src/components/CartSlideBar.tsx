@@ -1,5 +1,6 @@
 import React from "react";
 import { FiX } from "react-icons/fi";
+import { FaTrash } from "react-icons/fa";
 import useCart, { CartProduct } from "@/store/cart";
 import Image from "next/image";
 import QuantitySelector from "./product/QuantitySelector";
@@ -18,6 +19,8 @@ export default function CartSlideBar({
   const cart = useCart((state: any) => state.cart);
   const clearCart = useCart((state: any) => state.clearCart);
   const updateItemQuantity = useCart((state: any) => state.updateItemQuantity);
+  const removeFromCart = useCart((state: any) => state.removeFromCart);
+
   return (
     <>
       <div
@@ -68,25 +71,39 @@ export default function CartSlideBar({
                       &nbsp; ₹{item.selling_price}
                     </p>
                   </div>
-                  <QuantitySelector
-                    outOfStock={false}
-                    quantity={item.quantity}
-                    onQuantityChange={(q: number) =>
-                      updateItemQuantity(item.item_code, q)
-                    }
-                  />
+                  <div className="flex flex-row gap-2">
+                    <div className="flex flex-col gap-2">
+                      <QuantitySelector
+                        outOfStock={false}
+                        quantity={item.quantity}
+                        onQuantityChange={(q: number) =>
+                          updateItemQuantity(item.item_code, q)
+                        }
+                      />
+                    </div>
+                    <button
+                      className=" text-white px-4 py-2 rounded-md mt-2 cursor-pointer w-10 h-10 mx-auto mt-7 "
+                      onClick={() => removeFromCart(item.product_id)}
+                    >
+                      <FaTrash size={20} color="red" />
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
           ))}
         </div>
         <div className="flex flex-row justify-between items-center mt-1">
-          <button
-            className="bg-anmasa-accent text-white px-4 py-2 rounded-md mt-2 cursor-pointer w-70 mx-auto "
-            onClick={() => clearCart()}
-          >
-            Clear Cart
-          </button>
+          {cart.length > 0 ? (
+            <button
+              className="bg-anmasa-accent text-white px-4 py-2 rounded-md mt-2 cursor-pointer w-70 mx-auto "
+              onClick={() => clearCart()}
+            >
+              Clear Cart
+            </button>
+          ) : (
+            <p className="text-lg text-gray-500 mx-auto text-center my-90">Oops! Your cart is empty</p>
+          )}
         </div>
       </div>
     </>
