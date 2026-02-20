@@ -16,7 +16,6 @@ export default function ProductDetails({ product }: { product: Product }    ) {
       state.cart.find((p: any) => p.item_code === selectedVariant?.ic)
   );
   const updateItemQuantity = useCart((state: any) => state.updateItemQuantity);
-
   return (
     <>
     <div className="flex flex-row gap-2 p-20 pl-50">

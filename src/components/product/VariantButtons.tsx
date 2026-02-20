@@ -8,7 +8,6 @@ interface VariantButtonProps {
 }
 
 export default function VariantButtons({ variants, selectedVariant, onVariantChange }: VariantButtonProps) {
-
   return (
     <div className="flex flex-row gap-2">
       {variants.map((variant: Variant) => (
