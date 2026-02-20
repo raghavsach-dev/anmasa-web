@@ -35,7 +35,7 @@ export default function ProductDetails({ product }: { product: Product }    ) {
               onQuantityChange={(q) => updateItemQuantity(selectedVariant.ic, q)}
             />
           ) : (
-            <AddToCart variant={selectedVariant} />
+            <AddToCart variant={selectedVariant} product={product} />
           )}
           <Description content={product.content} />
         </div>
