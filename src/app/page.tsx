@@ -1,3 +1,4 @@
+import CategoryRow from "@/components/category/CategoryRow";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import ProductRow from "@/components/products/ProductRow";
@@ -17,6 +18,7 @@ export default async function Home() {
           height={1400}
           className="object-cover"
         />
+        <CategoryRow categoryCode="ATTA" />
       </>
     </div>
   );
