@@ -10,15 +10,15 @@ export default async function CategoryRow() {
   }
   return (
     <>
-      <div className="flex overflow-x-auto no-scrollbar mt-4 gap-6 whitespace-nowrap">
+      <div className="flex overflow-x-auto no-scrollbar mt-4 gap-6 whitespace-nowrap ml-30">
         {categories.map((category) => (
           <CategoryCard key={category.code} category={category} />
         ))}
       </div>
       <div className="flex justify-center items-center">
         {" "}
-        <button className="border rounded-lg border-gray-950 ml-1 mb-4 px-16 py-2 cursor-pointer hover:bg-gray-50 transition-colors">
-          <Link href="/categories">View All Categories</Link>
+        <button className="border rounded-lg ml-30 mb-4 px-16 py-2 cursor-pointer bg-anmasa-accent text-anmasa-text">
+          <Link href="/categoryGrid">View All Categories</Link>
         </button>
       </div>
     </>
