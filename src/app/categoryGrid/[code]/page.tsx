@@ -18,7 +18,7 @@ export default async function CategoryDetailPage({
 
   return (
     <div className="bg-anmasa-bg w-[100vw] min-h-screen py-6">
-      <div className="w-[90vw] mx-auto border-2 border-gray-200 rounded-lg p-4">
+      <div className="w-[90vw] mx-auto rounded-lg p-4">
         <div className="mt-6">
           <SubCategoryList subcategories={category.subcategories} />
         </div>

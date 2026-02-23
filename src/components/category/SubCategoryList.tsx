@@ -15,13 +15,13 @@ const SubCategoryList = ({ subcategories }: SubCategoryListProps) => {
   }
 
   return (
-    <div className="grid grid-cols-3 gap-6">
+    <div className="flex flex-col gap-6">
       {subcategories.map((sub) => (
         <div
           key={sub.code}
-          className="bg-transparent rounded w-[250px] flex flex-col items-center"
+          className="bg-transparent rounded w-full max-w-md flex flex-col items-start"
         >
-          <div className="relative w-[200px] h-[200px] bg-anmasa-accent mx-auto rounded-lg overflow-hidden">
+          <div className="relative w-[70px] h-[70px] bg-anmasa-accent ml-4 mt-2 rounded-lg overflow-hidden">
             <Image
               src={sub.image_url || "/oils4.webp"}
               alt={sub.name}
@@ -29,8 +29,8 @@ const SubCategoryList = ({ subcategories }: SubCategoryListProps) => {
               className="object-cover"
             />
           </div>
-          <div className="mt-1 text-md text-gray-500 text-center">
-            <p className="m-0 whitespace-normal break-words">{sub.name}</p>
+          <div className="mt-1 text-sm text-gray-500 text-center ml-4">
+            <p className="m-0 leading-tight line-clamp-2">{sub.name}</p>
           </div>
         </div>
       ))}
