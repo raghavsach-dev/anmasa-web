@@ -21,16 +21,20 @@ const SubCategoryList = ({ subcategories }: SubCategoryListProps) => {
           key={sub.code}
           className="bg-transparent rounded w-full max-w-md flex flex-col items-start"
         >
-          <div className="relative w-[70px] h-[70px] bg-anmasa-accent ml-4 mt-2 rounded-lg overflow-hidden">
-            <Image
-              src={sub.image_url || "/oils4.webp"}
-              alt={sub.name}
-              fill
-              className="object-cover"
-            />
-          </div>
-          <div className="mt-1 text-sm text-gray-500 text-center ml-4">
-            <p className="m-0 leading-tight line-clamp-2">{sub.name}</p>
+          <div className="ml-4 mt-2 flex flex-col items-center">
+            <div className="relative w-[70px] h-[70px] bg-anmasa-accent rounded-lg overflow-hidden">
+              <Image
+                src={sub.image_url || "/oils4.webp"}
+                alt={sub.name}
+                fill
+                className="object-cover"
+              />
+            </div>
+            <div className="mt-1 text-sm text-gray-500 text-center min-h-[2.5rem] w-[80px]">
+              <p className="m-0 leading-tight line-clamp-2  whitespace-normal break-words">
+                {sub.name}
+              </p>
+            </div>
           </div>
         </div>
       ))}

@@ -1,5 +1,6 @@
 import { getAllCategories } from "@/app/services/category-service";
 import { Categories } from "@/app/types/categories";
+import ProductsGrid from "@/components/category/ProductsGrid";
 import SubCategoryList from "@/components/category/SubCategoryList";
 import { notFound } from "next/navigation";
 
