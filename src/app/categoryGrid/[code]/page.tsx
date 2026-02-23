@@ -22,6 +22,7 @@ export default async function CategoryDetailPage({
       <div className="w-[90vw] mx-auto rounded-lg p-4">
         <div className="mt-6">
           <SubCategoryList subcategories={category.subcategories} />
+          <ProductsGrid subcategoryCode={category.subcategories[0].code} />
         </div>
       </div>
     </div>
