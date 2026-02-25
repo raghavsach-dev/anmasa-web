@@ -43,7 +43,7 @@ export default function CartSlideBar({
             <FiX size={25} />
           </button>
         </div>
-        <div className="flex flex-col p-2">
+        <div className="flex flex-col p-2 h-[calc(100vh-100px)] overflow-y-auto">
           {cart.map((item: CartProduct) => (
             <div className="flex flex-col p-2 ">
               <div
@@ -74,6 +74,7 @@ export default function CartSlideBar({
                   <div className="flex flex-row gap-2">
                     <div className="flex flex-col gap-2">
                       <QuantitySelector
+                        label=""
                         outOfStock={false}
                         quantity={item.quantity}
                         onQuantityChange={(q: number) =>

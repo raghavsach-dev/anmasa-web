@@ -41,6 +41,7 @@ export default function ProductDetails({ product }: { product: Product }) {
                 <>
                   {" "}
                   <QuantitySelector
+                    label="Quantity (In Cart)"
                     outOfStock={product.oos ?? false}
                     quantity={cartItem.quantity ?? 0}
                     onQuantityChange={(q) =>
