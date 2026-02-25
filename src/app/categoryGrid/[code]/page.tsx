@@ -6,13 +6,16 @@ import { notFound } from "next/navigation";
 
 export default async function CategoryDetailPage({
   params,
+  searchParams,
 }: {
   params: Promise<{ code: string }>;
+  searchParams: Promise<{ sub?: string }>;
 }) {
   const { code } = await params;
+  const { sub: selectedSubcategoryCode } = await searchParams;
   const categories: Categories[] | null = await getAllCategories();
   const category = categories?.find((c) => c.code === code);
-
+  console.log("category", category);
   if (!category) {
     notFound();
   }
@@ -21,8 +24,11 @@ export default async function CategoryDetailPage({
     <div className="bg-anmasa-bg w-[100vw] min-h-screen py-6">
       <div className="w-[90vw] mx-auto rounded-lg p-4">
         <div className="mt-6">
-          <SubCategoryList subcategories={category.subcategories} />
-          <ProductsGrid subcategoryCode={category.subcategories[0].code} />
+          <SubCategoryList code={code} />
+          <ProductsGrid
+            categoryCode={code}
+            subcategoryCode={selectedSubcategoryCode}
+          />
         </div>
       </div>
     </div>

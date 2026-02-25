@@ -1,11 +1,20 @@
 import Image from "next/image";
-import { Subcategory } from "@/app/types/categories";
-
+import { getProductsAndSubcategoryByCategoryCode } from "@/app/services/products-and-subcategory-service";
+import Link from "next/link";
 type SubCategoryListProps = {
-  subcategories: Subcategory[] | undefined;
+  code: string;
 };
 
-const SubCategoryList = ({ subcategories }: SubCategoryListProps) => {
+const SubCategoryList = async ({ code }: SubCategoryListProps) => {
+  const data = await getProductsAndSubcategoryByCategoryCode(code);
+  if (!data) {
+    return (
+      <div className="text-sm text-gray-500">
+        No subcategories found for this category.
+      </div>
+    );
+  }
+  const { subcategories } = data;
   if (!subcategories || subcategories.length === 0) {
     return (
       <div className="text-sm text-gray-500">
@@ -17,26 +26,31 @@ const SubCategoryList = ({ subcategories }: SubCategoryListProps) => {
   return (
     <div className="flex flex-col gap-6">
       {subcategories.map((sub) => (
-        <div
+        <Link
           key={sub.code}
-          className="bg-transparent rounded w-full max-w-md flex flex-col items-start"
+          href={{
+            pathname: `/categoryGrid/${code}`,
+            query: { sub: sub.code },
+          }}
         >
-          <div className="ml-4 mt-2 flex flex-col items-center">
-            <div className="relative w-[70px] h-[70px] bg-anmasa-accent rounded-lg overflow-hidden">
-              <Image
-                src={sub.image_url || "/oils4.webp"}
-                alt={sub.name}
-                fill
-                className="object-cover"
-              />
-            </div>
-            <div className="mt-1 text-sm text-gray-500 text-center min-h-[2.5rem] w-[80px]">
-              <p className="m-0 leading-tight line-clamp-2  whitespace-normal break-words">
-                {sub.name}
-              </p>
+          <div className="bg-transparent rounded w-full max-w-md flex flex-col items-start cursor-pointer">
+            <div className="ml-4 mt-2 flex flex-col items-center">
+              <div className="relative w-[70px] h-[70px] bg-anmasa-accent rounded-lg overflow-hidden cursor-pointer">
+                <Image
+                  src={sub.image_url || "/oils4.webp"}
+                  alt={sub.name}
+                  fill
+                  className="object-cover"
+                />
+              </div>
+              <div className="mt-1 text-sm text-gray-500 text-center min-h-[2.5rem] w-[80px]">
+                <p className="m-0 leading-tight line-clamp-2  whitespace-normal break-words">
+                  {sub.name}
+                </p>
+              </div>
             </div>
           </div>
-        </div>
+        </Link>
       ))}
     </div>
   );

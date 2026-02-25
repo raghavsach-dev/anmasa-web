@@ -1,11 +1,11 @@
 // common class to interact with the api
 
-const BASEURL = process.env.BASEURL || " ";
+const BASEURL = process.env.BASEURL || "";
 const API_KEY = process.env.API_KEY || "mbapp_123456789";
 export async function getWithoutAuth<T>(url: string): Promise<T | null> {
   console.log("Inside getWithoutAuth", url);
   try {
-    const apiURL = `${BASEURL}${url}`;
+    const apiURL = BASEURL ? `${BASEURL}${url}` : url;
     const response = await fetch(apiURL, {
       headers: {
         "x-api-key": API_KEY,
