@@ -45,11 +45,8 @@ export default function CartSlideBar({
         </div>
         <div className="flex flex-col p-2 h-[calc(100vh-100px)] overflow-y-auto">
           {cart.map((item: CartProduct) => (
-            <div className="flex flex-col p-2 ">
-              <div
-                key={item.item_code}
-                className="flex flex-row gap-2 w-full items-center border border-anmasa-accent rounded-lg p-2 justify-center"
-              >
+            <div key={item.item_code} className="flex flex-col p-2 ">
+              <div className="flex flex-row gap-2 w-full items-center border border-anmasa-accent rounded-lg p-2 justify-center">
                 <Image
                   src={item.image}
                   alt={item.item_code}
