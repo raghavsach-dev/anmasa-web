@@ -1,8 +1,8 @@
 import Product, { Variant } from "@/app/types/Products";
 import Image from "next/image";
-import { useState } from "react";
-import useCart, { CartProduct } from "@/store/cart";
+import useCart from "@/store/cart";
 import QuantitySelector from "./product/QuantitySelector";
+import { addOrIncrementVariantInCart } from "@/store/cartHelper";
 
 interface VarientPopupProps {
   product: Product;
@@ -14,37 +14,16 @@ interface VarientPopupProps {
 export default function VarientPopup({
   product,
   variants,
-  selectedVariant,
   onClose,
 }: VarientPopupProps) {
   const addToCart = useCart((state: any) => state.addToCart);
   const updateItemQuantity = useCart((state: any) => state.updateItemQuantity);
   const cart = useCart((state: any) => state.cart);
 
-  const handleAddVariant = (variant: Variant) => {
-    const existing = cart.find((p: any) => p.item_code === variant.ic);
-
-    if (existing) {
-      updateItemQuantity(variant.ic, (existing.quantity ?? 0) + 1);
-    } else {
-      addToCart({
-        product_id: variant.pid,
-        variant_id: variant.id,
-        quantity: 1,
-        item_code: variant.ic,
-        selling_price: variant.sp ?? 0,
-        mrp: variant.m ?? 0,
-        line_total: variant.sp ?? 0,
-        image: product.media?.[0]?.URL ?? product.img ?? "",
-        name: product.n ?? "",
-        variant_name: variant.vn ?? "",
-      } as CartProduct);
-    }
-  };
-
   return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm">
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50"
+      className="fixed inset-0 z-50 flex items-center justify-center"
       onClick={onClose}
     >
       <div
@@ -103,7 +82,15 @@ export default function VarientPopup({
                     <button
                       type="button"
                       className="border border-anmasa-accent text-anmasa-accent text-xs font-semibold px-4 py-1 rounded-full hover:bg-anmasa-accent hover:text-white cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
-                      onClick={() => handleAddVariant(variant)}
+                      onClick={() =>
+                        addOrIncrementVariantInCart(
+                          product,
+                          variant,
+                          cart,
+                          addToCart,
+                          updateItemQuantity
+                        )
+                      }
                     >
                       ADD
                     </button>
@@ -114,6 +101,7 @@ export default function VarientPopup({
           })}
         </div>
       </div>
+    </div>
     </div>
   );
 }
