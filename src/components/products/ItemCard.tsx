@@ -6,7 +6,6 @@ import { useRouter } from "next/navigation";
 import VarientPopup from "../VarientPopup";
 import useCart from "@/store/cart";
 import QuantitySelector from "../product/QuantitySelector";
-import { addOrIncrementVariantInCart } from "@/store/cartHelper";
 
 export default function ItemCard({ item }: { item: Product }) {
   const router = useRouter();
@@ -16,6 +15,9 @@ export default function ItemCard({ item }: { item: Product }) {
   const addToCart = useCart((state: any) => state.addToCart);
   const updateItemQuantity = useCart((state: any) => state.updateItemQuantity);
   const cart = useCart((state: any) => state.cart);
+  const addOrIncrementVariantInCart = useCart(
+    (state: any) => state.addOrIncrementVariantInCart,
+  );
 
   const hasSingleVariant = item.v.length === 1;
   const singleVariant = hasSingleVariant ? item.v[0] : null;
@@ -46,9 +48,9 @@ export default function ItemCard({ item }: { item: Product }) {
 
   return (
     <>
-      <div className="flex h-full flex-col justify-between rounded-lg border border-gray-200 bg-white p-4">
+      <div className="flex h-full flex-col justify-between rounded-lg border border-gray-200 bg-white p-4 cursor-pointer">
         <div>
-          <div className="relative mx-auto h-32 w-32">
+          <div onClick={() => router.push(`/product/${item.pc}`)} className="relative mx-auto h-32 w-32 cursor-pointer">
             <Image
               src={item.img || "/p1.png"}
               alt={item.n}
@@ -60,9 +62,9 @@ export default function ItemCard({ item }: { item: Product }) {
           <div className="mt-3 text-sm text-gray-500">
             <p
               onClick={() => router.push(`/product/${item.pc}`)}
-              className="mt-1 cursor-pointer text-base font-medium leading-tight text-gray-900 line-clamp-3"
+              className="mt-1 cursor-pointer text-base font-medium leading-tight text-gray-900 line-clamp-3 hover:underline"
             >
-              {item.n}
+              {item.n + " (" + item.v[0].vn + ")"}
             </p>
           </div>
         </div>
@@ -78,7 +80,6 @@ export default function ItemCard({ item }: { item: Product }) {
           </div>
 
           {hasSingleVariant ? (
-            // Single-variant products: full quantity control on card
             singleCartItem ? (
               <div className="ml-auto scale-90 origin-right">
                 <QuantitySelector
@@ -93,23 +94,12 @@ export default function ItemCard({ item }: { item: Product }) {
             ) : (
               <button
                 className="cursor-pointer ml-auto rounded-md border border-anmasa-accent px-4 py-2 text-sm font-semibold text-anmasa-accent hover:bg-anmasa-accent hover:text-white"
-                onClick={() =>
-                  singleVariant &&
-                  addOrIncrementVariantInCart(
-                    item,
-                    singleVariant,
-                    cart,
-                    addToCart,
-                    updateItemQuantity
-                  )
-                }
+                onClick={() => singleVariant && addOrIncrementVariantInCart(item, singleVariant)}
               >
                 ADD
               </button>
             )
           ) : hasAnyVariantInCart && primaryVariantForCart ? (
-            // Multi-variant products with one or more variants in cart:
-            // show small selector with summed quantity; any change opens popup
             <div className="ml-auto scale-90 origin-right">
               <QuantitySelector
                 label=""
@@ -122,8 +112,7 @@ export default function ItemCard({ item }: { item: Product }) {
               />
             </div>
           ) : (
-            // Multi-variant products with zero items in cart:
-            // show ADD to open popup
+
             <button
               className="cursor-pointer ml-auto rounded-md border border-anmasa-accent px-4 py-2 text-sm font-semibold text-anmasa-accent hover:bg-anmasa-accent hover:text-white"
               onClick={() => {

@@ -1,7 +1,7 @@
-import { get } from "http";
 import { create } from "zustand";
 import { devtools } from "zustand/middleware";
 import { persist, createJSONStorage } from "zustand/middleware";
+import Product, { Variant } from "@/app/types/Products";
 
 export type CartProduct = {
   product_id: string;
@@ -86,6 +86,46 @@ const useCart = create(
                     }
                   : p,
               ),
+            };
+          }),
+        addOrIncrementVariantInCart: (product: Product, variant: Variant) =>
+          set((state: any) => {
+            const existing = state.cart.find(
+              (p: CartProduct) => p.item_code === variant.ic,
+            );
+
+            if (existing) {
+              const quantity = (existing.quantity ?? 0) + 1;
+
+              return {
+                cart: state.cart.map((p: CartProduct) =>
+                  p.item_code === variant.ic
+                    ? {
+                        ...p,
+                        quantity,
+                        line_total: (p.selling_price ?? 0) * quantity,
+                        image: p.image,
+                      }
+                    : p,
+                ),
+              };
+            }
+
+            const newItem: CartProduct = {
+              product_id: variant.pid,
+              variant_id: variant.id,
+              quantity: 1,
+              item_code: variant.ic,
+              selling_price: variant.sp ?? 0,
+              mrp: variant.m ?? 0,
+              line_total: variant.sp ?? 0,
+              image: product.media?.[0]?.URL ?? product.img ?? "",
+              name: product.n ?? "",
+              variant_name: variant.vn ?? "",
+            };
+
+            return {
+              cart: [...state.cart, newItem],
             };
           }),
       }),

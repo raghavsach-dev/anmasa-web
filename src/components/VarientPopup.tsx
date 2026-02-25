@@ -2,7 +2,6 @@ import Product, { Variant } from "@/app/types/Products";
 import Image from "next/image";
 import useCart from "@/store/cart";
 import QuantitySelector from "./product/QuantitySelector";
-import { addOrIncrementVariantInCart } from "@/store/cartHelper";
 
 interface VarientPopupProps {
   product: Product;
@@ -19,6 +18,9 @@ export default function VarientPopup({
   const addToCart = useCart((state: any) => state.addToCart);
   const updateItemQuantity = useCart((state: any) => state.updateItemQuantity);
   const cart = useCart((state: any) => state.cart);
+  const addOrIncrementVariantInCart = useCart(
+    (state: any) => state.addOrIncrementVariantInCart,
+  );
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm">
