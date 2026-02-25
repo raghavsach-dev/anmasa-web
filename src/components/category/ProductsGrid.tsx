@@ -1,15 +1,17 @@
     
 import { getProductsAndSubcategoryByCategoryCode } from "@/app/services/products-and-subcategory-service";
-import ProductCard from "@/components/products/ProductCard";
+import ItemCard from "@/components/products/ItemCard";
 
 type ProductsGridProps = {
   categoryCode: string;
   subcategoryCode?: string;
+  categoryName: string;
 };
 
 export default async function ProductsGrid({
   categoryCode,
   subcategoryCode,
+  categoryName,
 }: ProductsGridProps) {
   const data = await getProductsAndSubcategoryByCategoryCode(categoryCode);
 
@@ -38,10 +40,19 @@ export default async function ProductsGrid({
   }
 
   return (
-    <div className="grid grid-cols-3 gap-6 border-2 border-gray-200 overflow-y-auto mt-4 w-[90vw] mx-auto h-[100vh]">
-      {filteredProducts.map((product) => (
-        <ProductCard key={product.id} product={product} />
-      ))}
+    <div className="bg-white rounded-lg h-[100vh]">
+      <div className="mb-4 flex items-center justify-between">
+        <h2 className="text-lg px-2 py-1 font-semibold text-gray-900 text-center">
+          Buy {categoryName} Online
+        </h2>
+      </div>
+      
+
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-2">
+        {filteredProducts.map((item) => (
+          <ItemCard key={item.id} item={item} />
+        ))}
+      </div>
     </div>
   );
 }

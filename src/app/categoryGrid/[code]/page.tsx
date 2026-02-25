@@ -21,13 +21,19 @@ export default async function CategoryDetailPage({
   }
 
   return (
-    <div className="bg-anmasa-bg w-[100vw] min-h-screen py-6">
-      <div className="w-[90vw] mx-auto rounded-lg p-4">
-        <div className="mt-6">
-          <SubCategoryList code={code} />
+    <div className="px-4 py-6 h-[100vh] [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+      <div className="mx-auto flex max-w-6xl gap-6 h-[100vh] [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] overflow-y-auto">
+        <div className="border border-gray-200 rounded-lg w-[200px] shrink-0 p-2 h-[100vh]">
+          <SubCategoryList
+            code={code}
+            selectedSubcategoryCode={selectedSubcategoryCode}
+          />
+        </div>
+        <div className="border border-gray-200 rounded-lg w-full h-[100vh] p-2 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] overflow-y-auto">
           <ProductsGrid
             categoryCode={code}
             subcategoryCode={selectedSubcategoryCode}
+            categoryName={category.name}
           />
         </div>
       </div>

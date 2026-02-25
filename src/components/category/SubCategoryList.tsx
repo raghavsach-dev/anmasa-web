@@ -3,9 +3,13 @@ import { getProductsAndSubcategoryByCategoryCode } from "@/app/services/products
 import Link from "next/link";
 type SubCategoryListProps = {
   code: string;
+  selectedSubcategoryCode?: string;
 };
 
-const SubCategoryList = async ({ code }: SubCategoryListProps) => {
+const SubCategoryList = async ({
+  code,
+  selectedSubcategoryCode,
+}: SubCategoryListProps) => {
   const data = await getProductsAndSubcategoryByCategoryCode(code);
   if (!data) {
     return (
@@ -33,8 +37,8 @@ const SubCategoryList = async ({ code }: SubCategoryListProps) => {
             query: { sub: sub.code },
           }}
         >
-          <div className="bg-transparent rounded w-full max-w-md flex flex-col items-start cursor-pointer">
-            <div className="ml-4 mt-2 flex flex-col items-center">
+          <div className="p-2 bg-transparent rounded w-full max-w-md flex flex-col items-center cursor-pointer">
+            <div className="mt-2 flex flex-col items-center">
               <div className="relative w-[70px] h-[70px] bg-anmasa-accent rounded-lg overflow-hidden cursor-pointer">
                 <Image
                   src={sub.image_url || "/oils4.webp"}

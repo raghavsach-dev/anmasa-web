@@ -16,7 +16,6 @@ export default async function ProductDetailPage({
 
   if (!product) {
     notFound();
-    return <div>Product not found</div>;
   }
 
 
