@@ -43,11 +43,6 @@ export default function ItemCard({ item }: { item: Product }) {
           ADD
         </button>
         <div className="flex flex-row gap-2 items-center">
-        <QuantitySelector
-          outOfStock={item.oos ?? false}
-          quantity={0}
-          onQuantityChange={(q) => {}}
-        />
         </div>
       </div>
     </div>
