@@ -2,7 +2,7 @@
 
 import ItemCard from "@/components/products/ItemCard";
 import { Subcategory } from "@/app/types/category";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 
 type ProductsGridClientProps = {
   subcategories: Subcategory[];
@@ -11,10 +11,15 @@ type ProductsGridClientProps = {
 export default function ProductsGridClient({
   subcategories,
 }: ProductsGridClientProps) {
+  const containerRef = useRef<HTMLDivElement | null>(null);
+
   useEffect(() => {
     const handleScroll = () => {
+      const container = containerRef.current;
+      if (!container) return;
+
       const sections =
-        document.querySelectorAll<HTMLElement>("[data-sub-code]");
+        container.querySelectorAll<HTMLElement>("[data-sub-code]");
       if (!sections.length) return;
 
       let activeCode: string | null = null;
@@ -42,12 +47,18 @@ export default function ProductsGridClient({
 
     handleScroll();
 
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
+    const container = containerRef.current;
+    if (!container) return;
+
+    container.addEventListener("scroll", handleScroll, { passive: true });
+    return () => container.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
-    <div className="h-[100vh] rounded-lg bg-gray-50">
+    <div
+      ref={containerRef}
+      className="h-full rounded-lg bg-gray-50 overflow-y-auto"
+    >
       {subcategories.map((sub) => {
         const subProducts = sub.products ?? [];
         if (subProducts.length === 0) return null;
