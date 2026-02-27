@@ -3,14 +3,11 @@ import ItemCard from "@/components/products/ItemCard";
 
 type ProductsGridProps = {
   categoryCode: string;
-  subcategoryCode?: string;
-  categoryName: string;
+  selectedSubcategoryCode?: string;
 };
 
 export default async function ProductsGrid({
   categoryCode,
-  subcategoryCode,
-  categoryName,
 }: ProductsGridProps) {
   const data = await getProductsAndSubcategoryByCategoryCode(categoryCode);
 
@@ -24,13 +21,19 @@ export default async function ProductsGrid({
 
   const { products, subcategories } = data;
 
-  const filteredProducts =
-    subcategoryCode && subcategories.length > 0
-      ? (subcategories.find((sub) => sub.code === subcategoryCode)?.products ??
-        [])
-      : products;
+  if (!subcategories || subcategories.length === 0) {
+    return (
+      <div className="mt-4 text-center text-sm text-gray-500">
+        No products found for this subcategory.
+      </div>
+    );
+  }
 
-  if (!filteredProducts || filteredProducts.length === 0) {
+  const hasAnyProducts =
+    subcategories.some((sub) => sub.products && sub.products.length > 0) ||
+    (products && products.length > 0);
+
+  if (!hasAnyProducts) {
     return (
       <div className="mt-4 text-center text-sm text-gray-500">
         No products found for this subcategory.
@@ -40,11 +43,23 @@ export default async function ProductsGrid({
 
   return (
     <div className="h-[100vh] rounded-lg bg-gray-50">
-      <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 xl:grid-cols-4">
-        {filteredProducts.map((item) => (
-          <ItemCard key={item.id} item={item} />
-        ))}
-      </div>
+      {subcategories.map((sub) => {
+        const subProducts = sub.products ?? [];
+        if (subProducts.length === 0) return null;
+
+        return (
+          <section key={sub.code} id={`sub-${sub.code}`} className="mb-6">
+            <h3 className="mb-2 text-base font-semibold text-gray-600">
+              {sub.name}
+            </h3>
+            <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 xl:grid-cols-4">
+              {subProducts.map((item) => (
+                <ItemCard key={item.id} item={item} />
+              ))}
+            </div>
+          </section>
+        );
+      })}
     </div>
   );
 }

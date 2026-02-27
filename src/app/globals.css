@@ -11,7 +11,9 @@
   --color-anmasa-yellow: oklch(90.5% 0.182 98.111);
   --color-anmasa-sale: oklch(96.2% 0.059 95.617);
 }
-
+html {
+  scroll-behavior: smooth;
+}
 body {
   font-family: "Quattrocento Sans", system-ui, sans-serif;
   background-color: #fcfcfc;
