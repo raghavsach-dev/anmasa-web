@@ -12,8 +12,13 @@ import useCart from "@/store/cart";
 import { FaTrash } from "react-icons/fa";
 
 export default function ProductDetails({ product }: { product: Product }) {
-  const [selectedVariant, setSelectedVariant] = useState<Variant>(product.v[0]);
-  const removeFromCart = useCart((state: any) => state.removeFromCart);
+  const sortedVariants = [...product.v].sort(
+    (a, b) => a.measure - b.measure,
+  );
+  const [selectedVariant, setSelectedVariant] = useState<Variant>(
+    sortedVariants[0],
+  );
+  
   const cartItem = useCart((state: any) =>
     state.cart.find((p: any) => p.item_code === selectedVariant?.ic),
   );
@@ -30,10 +35,10 @@ export default function ProductDetails({ product }: { product: Product }) {
             <p className="text-anmasa-heading text-lg">ANMASA</p>
             <h1 className="text-4xl text-anmasa-accent">{product.n}</h1>
             <div className="flex flex-col gap-2">
-              {selectedVariant && <PriceRow variant={selectedVariant} />}
+              {selectedVariant && <PriceRow  variant={selectedVariant} />}
               <p className="text-sm text-gray-500">Size</p>
               <VariantButtons
-                variants={product.v}
+                variants={sortedVariants}
                 selectedVariant={selectedVariant}
                 onVariantChange={setSelectedVariant}
               />
