@@ -1,4 +1,3 @@
-    
 import { getProductsAndSubcategoryByCategoryCode } from "@/app/services/products-and-subcategory-service";
 import ItemCard from "@/components/products/ItemCard";
 
@@ -27,8 +26,8 @@ export default async function ProductsGrid({
 
   const filteredProducts =
     subcategoryCode && subcategories.length > 0
-      ? subcategories.find((sub) => sub.code === subcategoryCode)?.products ??
-        []
+      ? (subcategories.find((sub) => sub.code === subcategoryCode)?.products ??
+        [])
       : products;
 
   if (!filteredProducts || filteredProducts.length === 0) {
@@ -40,15 +39,8 @@ export default async function ProductsGrid({
   }
 
   return (
-    <div className="bg-white rounded-lg h-[100vh]">
-      <div className="mb-4 flex items-center justify-between">
-        <h2 className="text-lg px-2 py-1 font-semibold text-gray-900 text-center">
-          Buy {categoryName} Online
-        </h2>
-      </div>
-      
-
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 xl:grid-cols-4 gap-4">
+    <div className="h-[100vh] rounded-lg bg-gray-50">
+      <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 xl:grid-cols-4">
         {filteredProducts.map((item) => (
           <ItemCard key={item.id} item={item} />
         ))}

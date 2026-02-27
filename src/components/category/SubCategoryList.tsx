@@ -28,37 +28,47 @@ const SubCategoryList = async ({
   }
 
   return (
-    <div className="flex flex-col gap-6">
-      {subcategories.map((sub) => (
-        <Link
-          key={sub.code}
-          href={{
-            pathname: `/categoryGrid/${code}`,
-            query: { sub: sub.code },
-          }}
-        >
-          <div className="p-2 bg-transparent rounded w-full max-w-md flex flex-col items-center cursor-pointer">
-            <div className="mt-2 flex flex-col items-center">
-              <div className="relative w-[70px] h-[70px] bg-anmasa-accent rounded-lg overflow-hidden cursor-pointer">
+<div className="flex w-44 flex-col gap-1 overflow-y-auto py-2">
+      {subcategories.map((sub) => {
+        const isActive = selectedSubcategoryCode === sub.code;
+        return (
+          <Link
+            key={sub.code}
+            href={{
+              pathname: `/categoryGrid/${code}`,
+              query: { sub: sub.code },
+            }}
+            className="block"
+          >
+            <div
+              className={`flex items-center gap-3 px-2 py-2 cursor-pointer rounded-lg transition-colors ${
+                isActive
+                  ? "bg-green-800 text-white"
+                  : "text-gray-700 hover:bg-green-800/50"
+              }`}
+            >
+              <div
+                className={`h-8 w-1 rounded-r-full ${
+                  isActive ? "bg-white" : "bg-transparent"
+                }`}
+              />
+              <div className="relative h-12 w-12 flex-shrink-0 overflow-hidden rounded-md bg-gray-100">
                 <Image
                   src={sub.image_url || "/oils4.webp"}
                   alt={sub.name}
-                  fill
+                 fill
                   className="object-cover"
                 />
               </div>
-              <div className="mt-1 text-sm text-gray-500 text-center min-h-[2.5rem] w-[80px]">
-                <p className="m-0 leading-tight line-clamp-2  whitespace-normal break-words">
-                  {sub.name}
-                </p>
-              </div>
+              <p className="text-sm leading-tight line-clamp-2 whitespace-normal break-words">
+                {sub.name}
+              </p>
             </div>
-          </div>
-        </Link>
-      ))}
+          </Link>
+        );
+      })}
     </div>
   );
 };
 
 export default SubCategoryList;
-

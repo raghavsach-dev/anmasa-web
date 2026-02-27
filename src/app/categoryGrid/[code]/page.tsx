@@ -21,20 +21,25 @@ export default async function CategoryDetailPage({
   }
 
   return (
-    <div className="px-4 py-6 h-[100vh] [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
-      <div className="mx-auto flex max-w-6xl gap-6 h-[100vh] [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] overflow-y-auto">
-        <div className="border border-gray-200 rounded-lg w-[200px] shrink-0 p-2 h-[100vh]">
-          <SubCategoryList
-            code={code}
-            selectedSubcategoryCode={selectedSubcategoryCode}
-          />
-        </div>
-        <div className="border border-gray-200 rounded-lg w-full h-[100vh] p-2 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] overflow-y-auto">
-          <ProductsGrid
-            categoryCode={code}
-            subcategoryCode={selectedSubcategoryCode}
-            categoryName={category.name}
-          />
+    <div className="h-[100vh] bg-gray-50">
+      <div className="px-4 py-4 h-full [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] overflow-y-auto">
+        <p className="text-xl sm:text-2xl font-bold mb-4 ml-42">
+          Buy <span className="text-green-800">{category.name}</span> Online
+        </p>
+        <div className="mx-auto flex max-w-6xl gap-6 h-full items-start [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] overflow-y-auto">
+          <div className="border border-gray-200 rounded-xl w-[200px] shrink-0 p-2 bg-white mt-2">
+            <SubCategoryList
+              code={code}
+              selectedSubcategoryCode={selectedSubcategoryCode}
+            />
+          </div>
+          <div className="w-full h-full p-2 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] overflow-y-auto rounded-lg">
+            <ProductsGrid
+              categoryCode={code}
+              subcategoryCode={selectedSubcategoryCode}
+              categoryName={category.name}
+            />
+          </div>
         </div>
       </div>
     </div>

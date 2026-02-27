@@ -1,6 +1,7 @@
 import React from "react";
 import { FiX } from "react-icons/fi";
 import { FaTrash } from "react-icons/fa";
+import { FaShoppingCart } from "react-icons/fa";
 import useCart, { CartProduct } from "@/store/cart";
 import Image from "next/image";
 import QuantitySelector from "./product/QuantitySelector";
@@ -34,7 +35,9 @@ export default function CartSlideBar({
         {" "}
         <div className="flex flex-row justify-between items-center mt-2">
           <div className="flex flex-col gap-2">
-            <h1 className="text-2xl font-bold ml-4">My Cart</h1>
+            <h1 className="text-2xl font-bold ml-4 flex flex-row items-center gap-2">
+            <FaShoppingCart size={25} /> My Cart 
+            </h1>
           </div>
           <button
             className="text-anmasa-accent cursor-pointer mr-4"
