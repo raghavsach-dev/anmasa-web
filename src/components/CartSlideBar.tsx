@@ -20,7 +20,6 @@ export default function CartSlideBar({
   const cart = useCart((state: any) => state.cart);
   const clearCart = useCart((state: any) => state.clearCart);
   const updateItemQuantity = useCart((state: any) => state.updateItemQuantity);
-  const removeFromCart = useCart((state: any) => state.removeFromCart);
 
   return (
     <>
@@ -36,7 +35,7 @@ export default function CartSlideBar({
         <div className="flex flex-row justify-between items-center mt-2">
           <div className="flex flex-col gap-2">
             <h1 className="text-2xl font-bold ml-4 flex flex-row items-center gap-2">
-            <FaShoppingCart size={25} /> My Cart 
+              <FaShoppingCart size={25} /> My Cart
             </h1>
           </div>
           <button
@@ -83,8 +82,8 @@ export default function CartSlideBar({
                       />
                     </div>
                     <button
-                      className=" text-white px-4 py-2 rounded-md mt-2 cursor-pointer w-10 h-10 mx-auto mt-7 "
-                      onClick={() => removeFromCart(item.product_id)}
+                      className=" text-white px-4 py-2 rounded-md mt-2 cursor-pointer w-10 h-10 mx-auto "
+                      onClick={() => updateItemQuantity(item.item_code, 0)}
                     >
                       <FaTrash size={20} color="red" />
                     </button>
@@ -103,7 +102,9 @@ export default function CartSlideBar({
               Clear Cart
             </button>
           ) : (
-            <p className="text-lg text-gray-500 mx-auto text-center my-90">Oops! Your cart is empty</p>
+            <p className="text-lg text-gray-500 mx-auto text-center my-90">
+              Oops! Your cart is empty
+            </p>
           )}
         </div>
       </div>

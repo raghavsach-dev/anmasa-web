@@ -2,6 +2,7 @@ import Product, { Variant } from "@/app/types/Products";
 import Image from "next/image";
 import useCart from "@/store/cart";
 import QuantitySelector from "./product/QuantitySelector";
+import AddToCartButton from "./Add";
 
 interface VarientPopupProps {
   product: Product;
@@ -83,21 +84,7 @@ export default function VarientPopup({
                         }
                       />
                     ) : (
-                      <button
-                        type="button"
-                        className="border border-anmasa-accent text-anmasa-accent text-xs font-semibold px-4 py-1 rounded-full hover:bg-anmasa-accent hover:text-white cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
-                        onClick={() =>
-                          addOrIncrementVariantInCart(
-                            product,
-                            variant,
-                            cart,
-                            addToCart,
-                            updateItemQuantity,
-                          )
-                        }
-                      >
-                        ADD
-                      </button>
+                      <AddToCartButton product={product} variant={variant} />
                     )}
                   </div>
                 </div>

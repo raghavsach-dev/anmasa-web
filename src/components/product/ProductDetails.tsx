@@ -51,7 +51,7 @@ export default function ProductDetails({ product }: { product: Product }) {
                   <div className="flex flex-row items-center">
                     <button
                       className=" text-white px-1 py-1 rounded-md -mt-15 ml-33 cursor-pointer w-10 h-10 mx-auto "
-                      onClick={() => removeFromCart(cartItem.product_id)}
+                      onClick={() => updateItemQuantity(selectedVariant.ic, 0)}
                     >
                       <FaTrash size={20} color="#ff0000" />
                     </button>
