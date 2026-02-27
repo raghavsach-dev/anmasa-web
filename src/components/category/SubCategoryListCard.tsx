@@ -22,6 +22,17 @@ export default function SubCategoryListCard({
     setSelectedCode(defaultSelectedCode);
   }, [defaultSelectedCode]);
 
+  useEffect(() => {
+    const handleActiveChange = (event: any) => {
+      const codeFromEvent = event.detail?.code as string | undefined;
+      if (codeFromEvent) setSelectedCode(codeFromEvent);
+    };
+
+    window.addEventListener("activeSubcategoryChange", handleActiveChange);
+    return () =>
+      window.removeEventListener("activeSubcategoryChange", handleActiveChange);
+  }, []);
+
   return (
     <div className="flex w-44 flex-col gap-1 overflow-y-auto py-2">
       {subcategories.map((sub) => {

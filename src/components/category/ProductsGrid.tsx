@@ -1,5 +1,5 @@
 import { getProductsAndSubcategoryByCategoryCode } from "@/app/services/products-and-subcategory-service";
-import ItemCard from "@/components/products/ItemCard";
+import ProductsGridClient from "./ProductsGridClient";
 
 type ProductsGridProps = {
   categoryCode: string;
@@ -41,25 +41,5 @@ export default async function ProductsGrid({
     );
   }
 
-  return (
-    <div className="h-[100vh] rounded-lg bg-gray-50">
-      {subcategories.map((sub) => {
-        const subProducts = sub.products ?? [];
-        if (subProducts.length === 0) return null;
-
-        return (
-          <section key={sub.code} id={`sub-${sub.code}`} className="mb-6">
-            <h3 className="mb-2 text-base font-semibold text-gray-600">
-              {sub.name}
-            </h3>
-            <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 xl:grid-cols-4">
-              {subProducts.map((item) => (
-                <ItemCard key={item.id} item={item} />
-              ))}
-            </div>
-          </section>
-        );
-      })}
-    </div>
-  );
+  return <ProductsGridClient subcategories={subcategories} />;
 }
