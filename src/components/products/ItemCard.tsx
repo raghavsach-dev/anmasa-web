@@ -82,7 +82,7 @@ export default function ItemCard({ item }: { item: Product }) {
             </div>
           </div>
 
-          <div className="mt-4 flex items-end">
+          <div className="mt-1 flex items-end">
             <div className="text-sm text-gray-500">
               <p className="line-through text-xs text-gray-400">
                 Rs. {item.v[0].m}
@@ -94,7 +94,7 @@ export default function ItemCard({ item }: { item: Product }) {
 
             {hasSingleVariant ? (
               singleCartItem ? (
-                <div className="ml-auto scale-90 origin-right">
+                <div className="ml-auto scale-80 origin-right">
                   <QuantitySelector
                     label=""
                     outOfStock={singleVariant?.oos ?? false}
